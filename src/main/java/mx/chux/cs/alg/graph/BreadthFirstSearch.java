@@ -73,7 +73,8 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
         return Collections.emptyList();
     }
     
-    private Collection<Node<T>> backtrace(Map<Node<T>, Node<T>> parents, Node<T> first, Node<T> last) {
+    private Collection<Node<T>> backtrace(Map<Node<T>, Node<T>> parents, 
+                                            Node<T> first, Node<T> last) {
         
         final List<Node<T>> path = new ArrayList<>(parents.size());
         
