@@ -79,12 +79,10 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
         
         path.add(last);
         
-        Node<T> current = last;
-        Node<T> parent = parents.get(current);
+        Node<T> parent = parents.get(last);
         
         while( !parent.equals(first) ) {
             path.add(parent);
-            current = parent;
             parent = parents.get(parent);
         }
          
