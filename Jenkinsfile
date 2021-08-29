@@ -60,16 +60,22 @@ pipeline {
 
         stage('sonar') {
         
-            withSonarQubeEnv(installationName: 'sonar') {
-                sh "mvn -e -ntp sonar:sonar"
+            steps {
+            
+                withSonarQubeEnv(installationName: 'sonar') {
+                    sh "mvn -e -ntp sonar:sonar"
+                }
+
             }
 
         }
 
         stage('deploy') {
         
-            withSonarQubeEnv(installationName: 'sonar') {
+            steps {
+
                 sh "mvn -e -ntp clean deploy"
+
             }
 
         }
