@@ -27,15 +27,15 @@ pipeline {
                 echo 'Building Branch: ' + GIT_LOCAL_BRANCH
         
                 git poll: false,
-                        branch: "${GIT_LOCAL_BRANCH}",
-                        credentialsId: 'GIT_SSH',
-                        url: 'ssh://git@192.168.1.100:3322/CompSci/alg-graph-bfs.git'
+                          branch: "${GIT_LOCAL_BRANCH}",
+                          credentialsId: 'GIT_SSH',
+                          url: 'ssh://git@192.168.1.100:3322/gerrit/cs-alg-graph-bfs.git'
                  
             }
                 
         }
         
-        stage ('build') {
+        stage ('verify') {
             
             steps {
             
@@ -51,11 +51,28 @@ pipeline {
                         spotbugsPublisher(disabled: true)
                     ]
                 ){
-                  sh "mvn -e -ntp clean verify sonar:sonar package deploy"
+                    sh "mvn -e -ntp clean verify"
                 }
                 
             }
             
         }
+
+        stage('sonar') {
+        
+            withSonarQubeEnv(installationName: 'sonar') {
+                sh "mvn -e -ntp sonar:sonar"
+            }
+
+        }
+
+        stage('deploy') {
+        
+            withSonarQubeEnv(installationName: 'sonar') {
+                sh "mvn -e -ntp clean deploy"
+            }
+
+        }
+
     }
 }
