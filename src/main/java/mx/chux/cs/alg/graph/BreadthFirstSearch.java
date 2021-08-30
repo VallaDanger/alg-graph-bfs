@@ -23,7 +23,7 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
     
     @Override
     public Collection<T> apply(T first, T last) {
-        
+
         final Node<T> firstNode = this.graph.getNode(first);
         final Node<T> lastNode = this.graph.getNode(last);
         
@@ -31,7 +31,13 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
             return Collections.emptyList();
         }
         
+        if( firstNode.equals(lastNode) ) {
+            return Collections.singleton(first);
+        }
+        
         final Collection<Node<T>> path = bfs(firstNode, lastNode);
+        
+        resetVisitedNodes(this.graph.getNodes());
         
         return extractPath(path);
     }
@@ -60,10 +66,13 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
                 final Collection<Node<T>> adjecents = this.graph.getAdjacentNodes(node);
                 
                 for( Node<T> n : adjecents ) {
-                    if( !q.contains(n) ) {
+                    if( !parents.containsKey(n) ) {
                         parents.put(n, node);
+                    }
+                    if( !q.contains(n) ) {
                         q.add(n);
                     }
+                    
                 }
                 
             }
@@ -100,6 +109,14 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
             extractedPath.add(node.get());
         }
         return extractedPath;
+    }
+    
+    private void resetVisitedNodes(Collection<Node<T>> nodes) {
+        for( Node<T> node : nodes ) {
+            if( node.hasBeenVisited() ) {
+                node.setVisited(false);
+            }
+        }
     }
 
 }

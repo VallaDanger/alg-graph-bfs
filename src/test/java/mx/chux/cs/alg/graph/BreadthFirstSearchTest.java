@@ -46,7 +46,7 @@ public class BreadthFirstSearchTest {
     @Test
     public void transitivePathExistTest() {
         assertThat(this.bfs.apply("b", "e")).isNotEmpty()
-        .isEqualTo(Arrays.asList("b", "c", "a", "e"));
+        .isEqualTo(Arrays.asList("b", "a", "e"));
     }
     
     @Test
