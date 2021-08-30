@@ -11,7 +11,7 @@
 
     <name>graph-bfs</name>
     <description>alg-bfs-bfs</description>
-    <url>http://192.168.1.100:9999/git/CompSci/alg-graph-bfs</url>
+    <url>http://192.168.1.100:9999/git/gerrit/cs-alg-graph-bfs</url>
 
     <organization>
         <name>chux</name>
