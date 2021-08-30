@@ -55,24 +55,22 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements BiFunction<T
             
             final Node<T> node = q.remove();
             
-            if( !node.hasBeenVisited() ) {
+            if( node.hasBeenVisited() ) {
+                continue;
+            }
 
-                node.setVisited(true);
-                
-                if( node.get().equals(value) ) {
-                    return backtrace(parents, first, last);
-                }
-                
-                final Collection<Node<T>> adjecents = this.graph.getAdjacentNodes(node);
-                
-                for( Node<T> n : adjecents ) {
-                    if( !parents.containsKey(n) ) {
-                        parents.put(n, node);
-                    }
-                    if( !q.contains(n) ) {
-                        q.add(n);
-                    }
-                    
+            node.setVisited(true);
+            
+            if( node.get().equals(value) ) {
+                return backtrace(parents, first, last);
+            }
+            
+            final Collection<Node<T>> adjecents = this.graph.getAdjacentNodes(node);
+            
+            for( Node<T> n : adjecents ) {
+                parents.putIfAbsent(n, node);
+                if( !q.contains(n) ) {
+                    q.add(n);
                 }
                 
             }
