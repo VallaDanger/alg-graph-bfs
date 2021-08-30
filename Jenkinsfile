@@ -29,7 +29,7 @@ pipeline {
                 git poll: false,
                           branch: "${GIT_LOCAL_BRANCH}",
                           credentialsId: 'GIT_SSH',
-                          url: 'ssh://git@192.168.1.100:3322/gerrit/cs-alg-graph-bfs.git'
+                          url: 'ssh://git@pi4.chux.net:3322/gerrit/alg-graph-bfs.git'
                  
             }
                 

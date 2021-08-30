@@ -1,1 +1,1 @@
-[![Build Status](http://192.168.1.100:9999/jenkins/job/CHUX/job/CompSci/job/algorithms/job/breadth-first-search/badge/icon)](http://192.168.1.100:9999/jenkins/job/CHUX/job/CompSci/job/algorithms/job/breadth-first-search/)
+[![Build Status](http://pi4.chux.net:9999/jenkins/job/CHUX/job/CompSci/job/algorithms/job/breadth-first-search/badge/icon)](http://pi4.chux.net:9999/jenkins/job/CHUX/job/CompSci/job/algorithms/job/breadth-first-search/)
